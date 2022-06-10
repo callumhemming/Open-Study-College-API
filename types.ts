@@ -1,4 +1,36 @@
 
+
+/**
+  * @param userID
+  * @param totalCost
+  */
+export interface Cart{
+    userID:string;
+    totalCost: number;
+}
+
+
+/**
+  * @param userID
+  * @param courseSelected
+  * @param cost
+  */
+ export interface CartItem{
+    userID:string;
+    courseSelected:string;
+    cost: number;
+}
+
+ /**
+  * @param name
+  * @param userID
+  */
+export interface User{
+    name:string;
+    userID:string
+}
+
+
 export interface APIres {
     success:boolean;
     payload:any[];

@@ -7,10 +7,10 @@ import db from "../../index.js"
 
     try{
         await db.query(`
-        CREATE TABLE IF NOT EXISTS carts(
-            shoppingCartID SERIAL PRIMARY KEY,
+        CREATE TABLE IF NOT EXISTS users(
+            usersTableID SERIAL PRIMARY KEY,
             userID text,
-            totalCost integer
+            name text
         )
         `)
 

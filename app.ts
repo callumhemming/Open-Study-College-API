@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 app.use('/courses', coursesRouter);
-app.use("./qandas", qAndAsRouter)
+app.use("/qandas", qAndAsRouter)
 
 app.use(function (req, res, next) {
   res.status(404).json({message: "We couldn't find what you were looking for 😞"})

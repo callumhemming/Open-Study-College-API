@@ -9,19 +9,26 @@
     "build": "tsc",
     "db:createCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/createTable.js",
     "db:createCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/createTable.js",
+    "db:createCartItemsTable": "node -r dotenv/config ./dist/db/scripts/cartItem/createTable.js",
     "db:createQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/createTable.js",
+    "db:createUsersTable": "node -r dotenv/config ./dist/db/scripts/users/createTable.js",
+    
 
     "db:populateCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/populateTable.js",
     "db:populateCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/populateTable.js",
+    "db:populateCartItemsTable": "node -r dotenv/config ./dist/db/scripts/cartItem/populateTable.js",
     "db:populateQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/populateTable.js",
+    "db:populateUsersTable": "node -r dotenv/config ./dist/db/scripts/users/populateTable.js",
 
     "db:dropCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/dropTable.js",
     "db:dropCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/dropTable.js",
+    "db:dropCartItemsTable": "node -r dotenv/config ./dist/db/scripts/cartItem/dropTable.js",
     "db:dropQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/dropTable.js",
+    "db:dropUsersTable": "node -r dotenv/config ./dist/db/scripts/users/dropTable.js",
 
-    "db:createAllTables": "npm run db:createCoursesTable && npm run db:createCartsTable && npm run db:createQandAsTable",
-    "db:populateAllTables": "npm run db:populateCoursesTable && npm run db:populateCartsTable && npm run db:populateQandAsTable",
-    "db:dropAllTables": "npm run db:dropCoursesTable && npm run db:dropCartsTable && npm run db:dropQandAsTable",
+    "db:createAllTables": "npm run db:createCoursesTable && npm run db:createCartsTable && npm run db:createQandAsTable && npm run db:createUsersTable && npm run db:createCartItemsTable",
+    "db:populateAllTables": "npm run db:populateCoursesTable && npm run db:populateCartsTable && npm run db:populateQandAsTable && npm run db:populateUsersTable && npm run db:populateCartItemsTable",
+    "db:dropAllTables": "npm run db:dropCoursesTable && npm run db:dropCartsTable && npm run db:dropQandAsTable && npm run db:dropUsersTable && npm run db:dropCartItemsTable",
     "db:initialSetUp": "npm run build  && npm run db:createAllTables && npm run db:populateAllTables"
   },
   "dependencies": {
