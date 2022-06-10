@@ -1,3 +1,5 @@
+import { PostBody } from "../../../types";
+
 /* 
 
 Example course: https://www.openstudycollege.com/courses/a-level-psychology
@@ -25,9 +27,9 @@ Reviews
 
 */
 
-const coursesData = [
+export const coursesData: PostBody[] = [
   {
-    code: "OSC1293",
+    courseCode: "OSC1293",
     name: "A Level Psychology",
     tag: "We have a 94% pass rate ** with our A Levels. Study A Level Psychology from home and earn up to 56 UCAS points.",
     atAGlance: [
@@ -60,6 +62,8 @@ const coursesData = [
 
   },
 ];
+
+
 
 /* 
 Tables:
