@@ -1,4 +1,4 @@
-import db from "../.."
+import db from "../../index.js"
 
 /*
 Courses:
@@ -15,20 +15,27 @@ Courses:
 (async ()=>{
 
 
-    await db.query(`
-    CREATE TABLE IF NOT EXISTS courses(
-        courseID SERIAL PRIMARY KEY,
-        courseCode TEXT,
-        name TEXT,
-        tag TEXT,
-        atAGlance text[],
-        overview text[],
-        extraInfo text[],
-        examDetails JSON
-    )
-    RETURNING *
+    try{
+        await db.query(`
+        CREATE TABLE IF NOT EXISTS courses(
+            courseID SERIAL PRIMARY KEY,
+            courseCode TEXT,
+            name TEXT,
+            tag TEXT,
+            atAGlance text[],
+            overview text[],
+            extraInfo text[],
+            examDetails JSON
+        )
+        RETURNING *
+    
+        `)
 
-    `)
+    } catch(err){
+        console.log(err)
+    }
+
+
 
 
 

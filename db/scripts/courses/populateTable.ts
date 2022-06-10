@@ -1,6 +1,6 @@
-import { coursesData } from "./dummyData";
-import db from "../.."
-import {PostBody} from "../../../types"
+import { coursesData } from "./dummyData.js";
+import db from "../../index.js"
+import {CourseData} from "../../../types"
 
 /*
     CREATE TABLE IF NOT EXISTS courses(
@@ -20,7 +20,7 @@ import {PostBody} from "../../../types"
 
 (async ()=>{
 
-    async function populateTable(data:PostBody){
+    async function populateTable(data:CourseData){
         const {courseCode, name, tag, atAGlance, overview, extraInfo,examDetails} = data
         
         await db.query(`

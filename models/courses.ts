@@ -1,31 +1,128 @@
-import { PostBody } from "../types";
-import db from "../db"
+import { CourseData, APIres, UpdateColumn } from "../types";
+import db from "../db/index.js";
 
-export async function getAllCourses(){
+export async function getAllCourses(): Promise<APIres> {
+  const apiResponse: APIres = {
+    success: false,
+    payload: [],
+  };
 
+  const response = await db.query(`
+            SELECT * FROM courses
+        `);
+
+  //Check is response is valid
+
+  apiResponse.success = true;
+  apiResponse.payload = response.rows;
+
+  return apiResponse;
 }
 
-export async function getCourseByID(id){
+export async function getCourseByID(courseCode: string): Promise<APIres> {
+  const apiResponse: APIres = {
+    success: false,
+    payload: [],
+  };
 
+  const response = await db.query(
+    `
+            SELECT * FROM courses
+            WHERE courseCode = $1
+            RETURNING *
+        `,
+    [courseCode]
+  );
+
+  //Check is response is valid
+
+  apiResponse.success = true;
+  apiResponse.payload = response.rows;
+
+  return apiResponse;
 }
 
-export async function createNewCourse(body : PostBody){
+export async function createNewCourse(body: CourseData): Promise<APIres> {
+  const apiResponse: APIres = {
+    success: false,
+    payload: [],
+  };
 
-    const {courseCode, name, tag, atAGlance, overview, extraInfo,examDetails} = body
-        
-    const response = await db.query(`
+  const { courseCode, name, tag, atAGlance, overview, extraInfo, examDetails } =
+    body;
+
+  const response = await db.query(
+    `
     INSERT INTO courses(courseCode, name, tag, atAGlance, overview, extraInfo, examDetails)
     VALUES ($1, $2, $3, $4, $5, $6,$7)
     RETURNING *
-    `,[courseCode, name, tag, atAGlance, overview, extraInfo, examDetails])
-    
+    `,
+    [courseCode, name, tag, atAGlance, overview, extraInfo, examDetails]
+  );
 
+  //Check is response is valid
+
+  apiResponse.success = true;
+  apiResponse.payload = response.rows;
+
+  return apiResponse;
 }
 
-export async function replaceCourseByID(id, body : PostBody){
+export async function replaceCourseByID(
+  courseCode: string,
+  updateColumnArray: UpdateColumn[]
+): Promise<APIres> {
+  const apiResponse: APIres = {
+    success: false,
+    payload: [],
+  };
 
+  async function updateEachValue(columnSelection: UpdateColumn) {
+    const { column, newData } = columnSelection;
+    return db.query(
+      `
+        UPDATE courses 
+        SET $1 = $2
+        WHERE courseCode = $3
+        RETURNING *
+
+        `,
+      [column, newData, courseCode]
+    );
+  }
+
+  const response = await Promise.all(
+    updateColumnArray.map(async columnSelection => {
+      return await updateEachValue(columnSelection);
+    })
+  );
+
+  //Check is response is valid
+
+  apiResponse.success = true;
+  apiResponse.payload = response;
+
+  return apiResponse;
 }
 
-export async function deleteCourseByID(id){
+export async function deleteCourseByID(courseCode: string): Promise<APIres> {
+  const apiResponse: APIres = {
+    success: false,
+    payload: [],
+  };
 
+  const response = await db.query(
+    `
+    DELETE FROM courses
+    WHERE courseCode = $1
+    `,
+    [courseCode]
+  );
+
+  //Check is response is valid
+
+  apiResponse.success = true;
+  apiResponse.payload = response.rows;
+
+  return apiResponse;
 }

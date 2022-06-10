@@ -1,10 +1,13 @@
+
+
+
 export interface APIres {
     success:boolean;
     payload:any[];
 }
 
 
-export interface PostBody{
+export interface CourseData{
     courseCode:string;
     name:string;
     tag:string;
@@ -27,3 +30,18 @@ export interface PostBody{
     RETURNING *
 */
 
+export interface QandA{
+    courseId:string;
+    question:string;
+    answer:string;
+}
+
+
+ /**
+  * @param column
+  * @param newData
+  */
+export interface UpdateColumn {
+    column:string;
+    newData:string;
+}

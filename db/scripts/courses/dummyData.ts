@@ -1,4 +1,4 @@
-import { PostBody } from "../../../types";
+import { CourseData } from "../../../types";
 
 /* 
 
@@ -27,7 +27,7 @@ Reviews
 
 */
 
-export const coursesData: PostBody[] = [
+export const coursesData: CourseData[] = [
   {
     courseCode: "OSC1293",
     name: "A Level Psychology",

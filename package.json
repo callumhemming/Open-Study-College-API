@@ -5,8 +5,21 @@
   "type": "module",
   "scripts": {
     "start": "node ./bin/www.js",
-    "dev": "nodemon -r dotenv/config ./bin/www.js",
-    "build": "tsc"
+    "dev": "nodemon -r dotenv/config ./dist/bin/www.js",
+    "build": "tsc",
+    "db:createCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/createTable.js",
+    "db:createCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/createTable.js",
+    "db:createQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/createTable.js",
+    "db:populateCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/populateTable.js",
+    "db:populateCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/createTable.js",
+    "db:populateQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/createTable.js",
+    "db:dropCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/dropTable.js",
+    "db:dropCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/createTable.js",
+    "db:dropQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/createTable.js",
+    "db:createAllTables": "npm run db:createCoursesTable && npm run db:createCartsTable && npm run db:createQandAsTable",
+    "db:populateAllTables": "npm run db:populateCoursesTable && npm run db:populateCartsTable && npm run db:populateQandAsTable",
+    "db:dropAllTables": "npm run db:dropCoursesTable && npm run db:dropCartsTable && npm run db:dropQandAsTable",
+    "db:initialSetUp": "npm run build  && npm run db:createAllTables && npm run db:populateAllTables"
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.3",
@@ -17,8 +30,10 @@
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
+    "dotenv": "^16.0.1",
     "express": "~4.16.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "pg": "^8.7.3"
   },
   "devDependencies": {
     "@types/node": "^17.0.41",
