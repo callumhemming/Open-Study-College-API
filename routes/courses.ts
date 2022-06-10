@@ -1,0 +1,95 @@
+import express from "express";
+
+import { APIres, PostBody } from "../types";
+import {
+getAllCourses,
+getCourseByID,
+createNewCourse,
+replaceCourseByID,
+deleteCourseByID
+} from "../models/courses"
+
+
+const router = express.Router();
+
+//CRUD
+//Create
+//Read
+//Update
+//Delete
+
+
+
+router.get("/", async (req,res)=>{
+    
+    const allCourseData :APIres  = await getAllCourses()
+
+    if (allCourseData.success === false){
+        res.status(500).json(allCourseData)
+    }
+
+    res.send(allCourseData)
+   
+})
+
+router.get("/:id", async (req,res)=>{
+    
+    const courseDataByID :APIres | void  = await getCourseByID(req.params.id)
+
+    if (courseDataByID.success === false){
+        res.status(500).json(courseDataByID)
+    }
+
+    res.send(courseDataByID)
+   
+})
+
+router.post("/", async (req,res)=>{
+    
+    const {body} : PostBody = req
+    
+    const courseDataByID :APIres | void  = await createNewCourse(body)
+
+    if (courseDataByID.success === false){
+        res.status(500).json(courseDataByID)
+    }
+
+    res.send(courseDataByID)
+   
+})
+
+
+
+
+//Update
+router.put("/:id", async (req,res)=>{
+    
+    const {body} : PostBody = req
+    
+    const putResponseByID :APIres | void  = await replaceCourseByID(req.params.id, body)
+
+    if (putResponseByID.success === false){
+        res.status(500).json(putResponseByID)
+    }
+
+    res.send(putResponseByID)
+   
+})
+
+//Delete
+router.delete("/:id", async (req,res)=>{
+    
+    const {body} : PostBody = req
+    
+    const deleteResponseByID :APIres | void  = await deleteCourseByID(req.params.id)
+
+    if (deleteResponseByID.success === false){
+        res.status(500).json(deleteResponseByID)
+    }
+
+    res.send(deleteResponseByID)
+   
+})
+
+
+export default router;
