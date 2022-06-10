@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node ./bin/www.js",
+    "start": "tsc && node ./dist/bin/www.js",
     "dev": "nodemon -r dotenv/config ./dist/bin/www.js",
     "build": "tsc",
     "db:createCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/createTable.js",
