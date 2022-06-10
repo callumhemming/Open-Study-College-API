@@ -18,10 +18,8 @@ QandAs:
         question TEXT,
         answer TEXT
     )
-    RETURNING *
-
     `)
 
 
 
-})
+})()

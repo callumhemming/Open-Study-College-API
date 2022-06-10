@@ -27,16 +27,14 @@ Courses:
             extraInfo text[],
             examDetails JSON
         )
-        RETURNING *
-    
         `)
 
     } catch(err){
-        console.log(err)
+        console.log(err, "Broke")
     }
 
 
 
 
 
-})
+})()

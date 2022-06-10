@@ -11,4 +11,4 @@ import db from "../../index.js"
     DROP TABLE qandas
     
     `)
-})
+})()

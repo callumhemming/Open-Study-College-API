@@ -27,7 +27,6 @@ import {CourseData} from "../../../types"
         
         INSERT INTO courses(courseCode, name, tag, atAGlance, overview, extraInfo, examDetails)
         VALUES ($1, $2, $3, $4, $5, $6,$7)
-        RETURNING *
         `,[courseCode, name, tag, atAGlance, overview, extraInfo, examDetails])
 
     }    
@@ -36,4 +35,4 @@ import {CourseData} from "../../../types"
     coursesData.forEach(v=>populateTable(v))
 
 
-})
+})()

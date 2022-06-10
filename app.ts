@@ -6,8 +6,9 @@ import cookieParser  from 'cookie-parser';
 import cors  from 'cors';
 import logger  from 'morgan';
 
-import usersRouter  from './routes/users.js';
+
 import coursesRouter from "./routes/courses.js"
+import qAndAsRouter from "./routes/qandas.js"
 
 const app = express();
 
@@ -18,11 +19,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/users', usersRouter);
+
 app.use('/courses', coursesRouter);
+app.use("./qandas", qAndAsRouter)
 
 app.use(function (req, res, next) {
   res.status(404).json({message: "We couldn't find what you were looking for 😞"})
+  res.send(process.env.DATABASE_URL)
 })
 
 app.use(function (err, req, res, next) {

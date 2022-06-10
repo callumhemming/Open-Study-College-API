@@ -9,25 +9,31 @@ import db from "../../index.js"
 
     async function populate(qAndAObject : QandA){
 
-        const {courseId, question, answer} = qAndAObject
+        const {courseCode, question, answer} = qAndAObject
 
-        await db.query(`
-            INSERT INTO qandas(
-                courseCode,
-                question,
-                answer
-            )
-            VALUES(
-                $1, $2, $3
-            )
-        `, [courseId, question, answer])
-        
+        try{
+                
+            await db.query(`
+                INSERT INTO qandas(
+                    courseCode,
+                    question,
+                    answer
+                )
+                VALUES(
+                    $1, $2, $3
+                )
+            `, [courseCode, question, answer])
+            
+        }catch(err){
+            console.log(err)
+        }
     }
 
 
     QandAData.forEach(async (QandAObject)=>{
-        await populate(QandAObject)
+        const response = await populate(QandAObject)
+        console.log(response)
     })
 
 
-})
+})()

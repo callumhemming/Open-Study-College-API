@@ -1,6 +1,4 @@
 
-
-
 export interface APIres {
     success:boolean;
     payload:any[];
@@ -16,22 +14,14 @@ export interface CourseData{
     extraInfo: string[];
     examDetails: string; 
 }
-/*
-    CREATE TABLE IF NOT EXISTS courses(
-        courseID SERIAL PRIMARY KEY,
-        courseCode TEXT,
-        name TEXT,
-        tag TEXT,
-        atAGlance text[],
-        overview text[],
-        extraInfo text[],
-        examDetails JSON
-    )
-    RETURNING *
-*/
 
+ /**
+  * @param courseCode
+  * @param question
+  * @param answer
+  */
 export interface QandA{
-    courseId:string;
+    courseCode:string;
     question:string;
     answer:string;
 }

@@ -29,7 +29,7 @@ export async function getCourseByID(courseCode: string): Promise<APIres> {
     `
             SELECT * FROM courses
             WHERE courseCode = $1
-            RETURNING *
+            
         `,
     [courseCode]
   );
@@ -55,7 +55,7 @@ export async function createNewCourse(body: CourseData): Promise<APIres> {
     `
     INSERT INTO courses(courseCode, name, tag, atAGlance, overview, extraInfo, examDetails)
     VALUES ($1, $2, $3, $4, $5, $6,$7)
-    RETURNING *
+   
     `,
     [courseCode, name, tag, atAGlance, overview, extraInfo, examDetails]
   );
@@ -84,8 +84,7 @@ export async function replaceCourseByID(
         UPDATE courses 
         SET $1 = $2
         WHERE courseCode = $3
-        RETURNING *
-
+       
         `,
       [column, newData, courseCode]
     );

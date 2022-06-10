@@ -28,7 +28,7 @@ router.get("/", async (req,res)=>{
         res.status(500).json(allCourseData)
     }
 
-    res.send(allCourseData)
+    res.json(allCourseData)
    
 })
 
@@ -40,7 +40,7 @@ router.get("/:id", async (req,res)=>{
         res.status(500).json(courseDataByID)
     }
 
-    res.send(courseDataByID)
+    res.json(courseDataByID)
    
 })
 
@@ -54,7 +54,7 @@ router.post("/", async (req,res)=>{
         res.status(500).json(courseDataByID)
     }
 
-    res.send(courseDataByID)
+    res.json(courseDataByID)
    
 })
 
@@ -72,7 +72,7 @@ router.put("/:id", async (req,res)=>{
         res.status(500).json(putResponseByID)
     }
 
-    res.send(putResponseByID)
+    res.json(putResponseByID)
    
 })
 
@@ -87,7 +87,7 @@ router.delete("/:id", async (req,res)=>{
         res.status(500).json(deleteResponseByID)
     }
 
-    res.send(deleteResponseByID)
+    res.json(deleteResponseByID)
    
 })
 

@@ -10,12 +10,15 @@
     "db:createCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/createTable.js",
     "db:createCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/createTable.js",
     "db:createQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/createTable.js",
+
     "db:populateCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/populateTable.js",
-    "db:populateCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/createTable.js",
-    "db:populateQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/createTable.js",
+    "db:populateCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/populateTable.js",
+    "db:populateQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/populateTable.js",
+
     "db:dropCoursesTable": "node -r dotenv/config ./dist/db/scripts/courses/dropTable.js",
-    "db:dropCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/createTable.js",
-    "db:dropQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/createTable.js",
+    "db:dropCartsTable": "node -r dotenv/config ./dist/db/scripts/carts/dropTable.js",
+    "db:dropQandAsTable": "node -r dotenv/config ./dist/db/scripts/QandAs/dropTable.js",
+
     "db:createAllTables": "npm run db:createCoursesTable && npm run db:createCartsTable && npm run db:createQandAsTable",
     "db:populateAllTables": "npm run db:populateCoursesTable && npm run db:populateCartsTable && npm run db:populateQandAsTable",
     "db:dropAllTables": "npm run db:dropCoursesTable && npm run db:dropCartsTable && npm run db:dropQandAsTable",

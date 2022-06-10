@@ -9,4 +9,4 @@ import db from "../../index.js"
     db.query(`
     DROP TABLE courses
     `)
-})
+})()
