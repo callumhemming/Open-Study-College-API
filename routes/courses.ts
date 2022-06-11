@@ -65,8 +65,9 @@ router.post("/", async (req,res)=>{
 router.put("/:id", async (req,res)=>{
     
     const {body} = req
-    
-    const putResponseByID :APIres | void  = await replaceCourseByID(req.params.id, body)
+
+    console.log(body.changeList)
+    const putResponseByID :APIres  = await replaceCourseByID(req.params.id, body.changeList)
 
     if (putResponseByID.success === false){
         res.status(500).json(putResponseByID)

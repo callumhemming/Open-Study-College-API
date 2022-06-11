@@ -83,6 +83,8 @@ export async function replaceCourseByID(
   courseCode: string,
   updateColumnArray: UpdateColumn[]
 ): Promise<APIres> {
+
+
   const apiResponse: APIres = {
     success: false,
     payload: [],
@@ -90,15 +92,17 @@ export async function replaceCourseByID(
 
   async function updateEachValue(columnSelection: UpdateColumn) {
     const { column, newData } = columnSelection;
-    return db.query(
+    console.log(column, newData, courseCode)
+    return await db.query(
       `
-        UPDATE courses 
-        SET $1 = $2
-        WHERE courseCode = $3
-       
-        `,
-      [column, newData, courseCode]
+      UPDATE courses 
+      SET ${column} = $1 
+      WHERE coursecode = $2
+              
+          `,
+      [newData, courseCode]
     );
+
   }
 
   const response = await Promise.all(
