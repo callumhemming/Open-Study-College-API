@@ -2,6 +2,7 @@
   "name": "open-study-college-task",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "test": "jest",
     "start": "node ./dist/bin/www.js",
