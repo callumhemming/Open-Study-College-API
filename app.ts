@@ -9,6 +9,9 @@ import logger  from 'morgan';
 
 import coursesRouter from "./routes/courses.js"
 import qAndAsRouter from "./routes/qandas.js"
+import cartRouter from "./routes/carts.js"
+import cartItemRouter from "./routes/cartItem.js"
+import usersRouter from "./routes/users.js"
 
 const app = express();
 
@@ -22,6 +25,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use('/courses', coursesRouter);
 app.use("/qandas", qAndAsRouter)
+app.use("/carts", cartRouter)
+app.use("/cartitems", cartItemRouter)
+app.use("/users", usersRouter)
 
 app.use(function (req, res, next) {
   res.status(404).json({message: "We couldn't find what you were looking for 😞"})

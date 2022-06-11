@@ -13,6 +13,8 @@ export async function getAllCourses(): Promise<APIres> {
 
   //Check is response is valid
 
+
+
   apiResponse.success = true;
   apiResponse.payload = response.rows;
 
@@ -36,8 +38,17 @@ export async function getCourseByID(courseCode: string): Promise<APIres> {
 
   //Check is response is valid
 
+    //get QandAs
+
+    const qAndAs = await db.query(`
+    SELECT * FROM qandas
+    WHERE courseCode = $1
+  `,[courseCode]);
+
   apiResponse.success = true;
   apiResponse.payload = response.rows;
+
+  apiResponse.payload[0].qandas = qAndAs.rows
 
   return apiResponse;
 }

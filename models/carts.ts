@@ -1,5 +1,6 @@
-import { Cart, APIres, UpdateColumn } from "../types";
+import { Cart, CartItem, APIres, UpdateColumn } from "../types";
 import db from "../db/index.js";
+import { getCartItemsByUserID } from "./cartItem.js";
 
 export async function getAllCarts(): Promise<APIres> {
   const apiResponse: APIres = {
@@ -8,7 +9,7 @@ export async function getAllCarts(): Promise<APIres> {
   };
 
   const response = await db.query(`
-            SELECT * FROM courses
+            SELECT * FROM carts
         `);
 
   //Check is response is valid
@@ -27,17 +28,22 @@ export async function getCartByID(userID: string): Promise<APIres> {
 
   const response = await db.query(
     `
-            SELECT * FROM courses
-            WHERE courseCode = $1
+            SELECT * FROM carts
+            WHERE userID = $1
             
         `,
-    [courseCode]
+    [userID]
   );
 
   //Check is response is valid
 
+  //Get CartItems
+  const cartItems : CartItem[] = (await getCartItemsByUserID(userID)).payload
+  
+
   apiResponse.success = true;
   apiResponse.payload = response.rows;
+  apiResponse.payload[0].cartItems = cartItems
 
   return apiResponse;
 }
@@ -48,16 +54,15 @@ export async function createNewCart(body: Cart): Promise<APIres> {
     payload: [],
   };
 
-  const { courseCode, name, tag, atAGlance, overview, extraInfo, examDetails } =
-    body;
+  const { userID, totalCost } = body;
 
   const response = await db.query(
     `
-    INSERT INTO courses(courseCode, name, tag, atAGlance, overview, extraInfo, examDetails)
-    VALUES ($1, $2, $3, $4, $5, $6,$7)
+    INSERT INTO carts(userID, totalCost)
+    VALUES ($1, $2)
    
     `,
-    [courseCode, name, tag, atAGlance, overview, extraInfo, examDetails]
+    [userID, totalCost]
   );
 
   //Check is response is valid
@@ -68,10 +73,7 @@ export async function createNewCart(body: Cart): Promise<APIres> {
   return apiResponse;
 }
 
-export async function replaceCartByID(
-  courseCode: string,
-  updateColumnArray: UpdateColumn[]
-): Promise<APIres> {
+export async function replaceCartByID(userID: string, updateColumnArray: UpdateColumn[] ): Promise<APIres> {
   const apiResponse: APIres = {
     success: false,
     payload: [],
@@ -81,12 +83,12 @@ export async function replaceCartByID(
     const { column, newData } = columnSelection;
     return db.query(
       `
-        UPDATE courses 
+        UPDATE carts 
         SET $1 = $2
-        WHERE courseCode = $3
+        WHERE userID = $3
        
         `,
-      [column, newData, courseCode]
+      [column, newData, userID]
     );
   }
 
@@ -112,10 +114,10 @@ export async function deleteCartByID(userID: string): Promise<APIres> {
 
   const response = await db.query(
     `
-    DELETE FROM courses
-    WHERE courseCode = $1
+    DELETE FROM carts
+    WHERE userID = $1
     `,
-    [courseCode]
+    [userID]
   );
 
   //Check is response is valid
