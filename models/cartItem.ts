@@ -77,12 +77,12 @@ export async function replaceCartItemByID(cartItemUniqueID: number, updateColumn
     const { column, newData } = columnSelection;
     return db.query(
       `
-        UPDATE cartItems 
-        SET $1 = $2
-        WHERE cartItemID = $3
+      UPDATE cartItems
+      SET ${column} = $1
+      WHERE userID = $2
        
         `,
-      [column, newData, cartItemUniqueID]
+      [newData, cartItemUniqueID]
     );
   }
 

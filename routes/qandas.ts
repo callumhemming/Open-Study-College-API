@@ -56,7 +56,7 @@ router.put("/:id", async (req, res) => {
 
   const updateResponse: APIres = await replaceQandAByID(
     req.params.id,
-    body
+    body.changeList
   );
 
   if (updateResponse.success === false) {
@@ -70,7 +70,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const { body } = req;
 
-  const deleteResponseByID: APIres | void = await deleteQandAByID(
+  const deleteResponseByID: APIres = await deleteQandAByID(
     req.params.id
   );
 

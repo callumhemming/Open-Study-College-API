@@ -67,7 +67,10 @@ export async function createNewUser(body: User): Promise<APIres> {
   return apiResponse;
 }
 
-export async function replaceUserByID(userID:string, updateColumnArray: UpdateColumn[] ): Promise<APIres> {
+export async function replaceUserByID(
+  userID: string,
+  updateColumnArray: UpdateColumn[]
+): Promise<APIres> {
   const apiResponse: APIres = {
     success: false,
     payload: [],
@@ -77,12 +80,12 @@ export async function replaceUserByID(userID:string, updateColumnArray: UpdateCo
     const { column, newData } = columnSelection;
     return db.query(
       `
-        UPDATE users 
-        SET $1 = $2
-        WHERE users = $3
+      UPDATE users 
+      SET ${column} = $1
+      WHERE userID = $2
        
         `,
-      [column, newData, userID]
+      [ newData, userID]
     );
   }
 
@@ -95,7 +98,7 @@ export async function replaceUserByID(userID:string, updateColumnArray: UpdateCo
   //Check is response is valid
 
   apiResponse.success = true;
-  apiResponse.payload = response;
+  apiResponse.payload = [];
 
   return apiResponse;
 }

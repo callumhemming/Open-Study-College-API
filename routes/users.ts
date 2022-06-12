@@ -60,7 +60,7 @@ router.put("/:id", async (req,res)=>{
     
     const {body} = req
     
-    const response :APIres = await replaceUserByID(req.params.id, body)
+    const response :APIres = await replaceUserByID(req.params.id, body.changeList)
 
     if (response.success === false){
         res.status(500).json(response)

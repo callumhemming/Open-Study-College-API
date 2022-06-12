@@ -3,30 +3,30 @@ import request from "supertest";
 
 const baseUrl = "http://localhost:3000/";
 
-describe("Testing Carts endpoints", () => {
-  it("Should return a 200 status code when GET /carts", async () => {
-    const response = await request(baseUrl).get("carts");
+describe("Testing Users endpoints", () => {
+  it("Should return a 200 status code when GET /users", async () => {
+    const response = await request(baseUrl).get("users");
 
     expect(response.statusCode).toBe(200);
   });
 
-  it("Should return a 200 status code when GET /carts/787733333", async () => {
-    const response = await request(baseUrl).get("carts/787733333");
+  it("Should return a 200 status code when GET /users/rgerg4444444", async () => {
+    const response = await request(baseUrl).get("users/rgerg4444444");
 
     expect(response.statusCode).toBe(200);
   });
 
-  it("Should return a 200 status code when POST /carts", async () => {
+  it("Should return a 200 status code when POST /users", async () => {
     const expectedResponseObject = {
       success: true,
       payload: [],
     };
 
     const response = await request(baseUrl)
-        .post("carts")
+        .post("users")
         .send({
             userID:"testingid",
-            totalCost:30000
+            name:"Test name"
         });
 
     expect(response.statusCode).toBe(200);
@@ -41,9 +41,9 @@ describe("Testing Carts endpoints", () => {
     };
 
     const response = await request(baseUrl)
-        .put("carts/testingid")
+        .put("users/testingid")
         .send({
-            changeList:[{column:"totalcost", newData:10}, ]
+            changeList:[{column:"name", newData:"TESTING NAME BUT BIG"}, ]
         });
 
     expect(response.statusCode).toBe(200);
@@ -52,14 +52,14 @@ describe("Testing Carts endpoints", () => {
   });
 
 
-  it("Should return a 200 status code when DELETE /carts/testingid", async () => {
+  it("Should return a 200 status code when DELETE /users/testingid", async () => {
     const expectedResponseObject = {
       success: true,
       payload: [],
     };
 
     const response = await request(baseUrl)
-        .delete("carts/testingid")
+        .delete("users/testingid")
 
     expect(response.statusCode).toBe(200);
 

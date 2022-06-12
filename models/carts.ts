@@ -84,11 +84,11 @@ export async function replaceCartByID(userID: string, updateColumnArray: UpdateC
     return db.query(
       `
         UPDATE carts 
-        SET $1 = $2
-        WHERE userID = $3
+        SET ${column} = $1
+        WHERE userID = $2
        
         `,
-      [column, newData, userID]
+      [newData, userID]
     );
   }
 
@@ -101,7 +101,7 @@ export async function replaceCartByID(userID: string, updateColumnArray: UpdateC
   //Check is response is valid
 
   apiResponse.success = true;
-  apiResponse.payload = response;
+  apiResponse.payload = [];
 
   return apiResponse;
 }

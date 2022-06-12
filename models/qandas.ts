@@ -77,12 +77,12 @@ export async function replaceQandAByID( qAndAID: string,updateColumnArray: Updat
     const { column, newData } = columnSelection;
     return db.query(
       `
-        UPDATE qandas 
-        SET $1 = $2
-        WHERE qandaid = $3
+      UPDATE qandas 
+      SET ${column} = $1
+      WHERE userID = $2
        
         `,
-      [column, newData, qAndAID]
+      [newData, qAndAID]
     );
   }
 
