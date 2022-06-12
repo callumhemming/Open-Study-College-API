@@ -32,7 +32,7 @@ export const coursesData: CourseData[] = [
     courseCode: "OSC1293",
     name: "A Level Psychology",
     tag: "We have a 94% pass rate ** with our A Levels. Study A Level Psychology from home and earn up to 56 UCAS points.",
-    atAGlance: [
+    atAGlance: JSON.stringify( [
       "Gain an official A Level Psychology qualification from AQA.",
       "Achieve up to 56 UCAS points to help you land your dream place at university.",
       "Nationally recognised accredited A Level qualification that is the same course offered in schools and colleges.",
@@ -40,7 +40,7 @@ export const coursesData: CourseData[] = [
       "Study this online A Level from home at your own pace.",
       "Benefit from the full support of your personal tutor via email.",
       "Choose to include exams and save up to £400*.",
-    ],
+    ]),
     overview:[
         `During this A Level Psychology course, you'll delve into psychological concepts such as types of conformity in social settings; the behavioural, emotional, and cognitive characteristics of phobia, depression and OCD; and the divisions of the nervous system. You will also have the chance to choose between three optional areas of study as detailed below to suit your areas of interest.
 

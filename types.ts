@@ -41,7 +41,7 @@ export interface CourseData{
     courseCode:string;
     name:string;
     tag:string;
-    atAGlance:string[];
+    atAGlance:string;
     overview:string[];
     extraInfo: string[];
     examDetails: string; 

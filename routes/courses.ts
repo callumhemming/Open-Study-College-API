@@ -8,6 +8,7 @@ createNewCourse,
 replaceCourseByID,
 deleteCourseByID
 } from "../models/courses.js"
+import { nextTick } from "process";
 
 
 const router = express.Router();
@@ -48,7 +49,7 @@ router.post("/", async (req,res)=>{
     
     const {body }= req
     
-    const courseDataByID :APIres | void  = await createNewCourse(body)
+    const courseDataByID :APIres  = await createNewCourse(body)
 
     if (courseDataByID.success === false){
         res.status(500).json(courseDataByID)
@@ -62,11 +63,14 @@ router.post("/", async (req,res)=>{
 
 
 //Update
-router.put("/:id", async (req,res)=>{
+router.put("/:id", async (req,res, next)=>{
     
     const {body} = req
 
-    console.log(body.changeList)
+    console.log("changList here >",body.changeList)
+
+    // res.send("Hello")
+
     const putResponseByID :APIres  = await replaceCourseByID(req.params.id, body.changeList)
 
     if (putResponseByID.success === false){

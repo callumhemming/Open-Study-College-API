@@ -22,7 +22,7 @@ Courses:
             courseCode TEXT,
             name TEXT,
             tag TEXT,
-            atAGlance text[],
+            atAGlance JSON,
             overview text[],
             extraInfo text[],
             examDetails JSON
