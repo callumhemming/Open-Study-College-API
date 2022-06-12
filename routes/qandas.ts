@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  const qandaDataByID: APIres = await getQandAsByID(req.params.id);
+  const qandaDataByID: APIres = await getQandAsByID(Number(req.params.id));
 
   if (qandaDataByID.success === false) {
     res.status(500).json(qandaDataByID);

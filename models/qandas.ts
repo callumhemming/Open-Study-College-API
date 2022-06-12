@@ -19,7 +19,7 @@ export async function getAllQandAs(): Promise<APIres> {
   return apiResponse;
 }
 
-export async function getQandAsByID(qAndAID: string): Promise<APIres> {
+export async function getQandAsByID(qAndAID: number): Promise<APIres> {
   const apiResponse: APIres = {
     success: false,
     payload: [],
